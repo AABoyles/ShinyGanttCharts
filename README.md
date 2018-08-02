@@ -1,6 +1,6 @@
 # ShinyGanttCharts
 
-![Example Gantt Chart](https://github.com/aaboyles/ShinyGanttCharts/raw/master/src/download.png "Example Gantt Chart")
+![Example Gantt Chart](https://raw.githubusercontent.com/AABoyles/ShinyGanttCharts/master/download.png "Example Gantt Chart")
 
 A Shiny App to create Gantt Charts by [Anthony A. Boyles](http://anthony.boyles.cc)
 
