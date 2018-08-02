@@ -1,4 +1,5 @@
 library(tidyverse)
+library(readxl)
 library(shiny)
 library(lubridate)
 library(scales)
@@ -26,7 +27,11 @@ ui <- fluidPage(
   verticalLayout(
     titlePanel("Gantt Chart-er"),
     fileInput("file1", "Choose CSV File", multiple = FALSE,
-      accept = c("text/csv","text/comma-separated-values,text/plain",".csv")
+      accept = c(
+        "text/csv","text/comma-separated-values,text/plain",".csv",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",".xlsx",
+        "application/vnd.ms-excel",".xls"
+      )
     ),
     plotOutput("gantt")
   )
@@ -36,7 +41,11 @@ server <- function(input, output){
   output$gantt <- renderPlot({
     req(input$file1)
     
-    tasks <- read_csv(input$file1$datapath)
+    if(input$file1$type %in% c("text/csv","text/comma-separated-values,text/plain",".csv")){
+      tasks <- read_csv(input$file1$datapath)
+    } else {
+      tasks <- read_excel(input$file1$datapath)
+    }
 
     tasks.long <- tasks %>%
       mutate(Start = ymd(Start), End = ymd(End)) %>%
