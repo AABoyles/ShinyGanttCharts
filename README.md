@@ -1,19 +1,21 @@
 # ShinyGanttCharts
 
-A Shiny App to create Gantt Charts
+![Example Gantt Chart](https://github.com/aaboyles/ShinyGanttCharts/raw/master/src/download.png "Example Gantt Chart")
 
-by Anthony A. Boyles (@aaboyles)
+A Shiny App to create Gantt Charts by [Anthony A. Boyles](http://anthony.boyles.cc)
 
 Gantt Chart code adapted from [this post](https://stats.andrewheiss.com/misc/gantt.html) by Andrew Heiss
 
+**[Click Here to Download a Demo File](https://github.com/aaboyles/ShinyGanttCharts/blob/master/demo.csv)**
+
 ## How do I get this thing running?
 
-*Note*: You're probably only going to be able to use this if you're already an R user. Getting an R environment set up is complexity that's far outside the scope of this project.
+*Note*: You're probably only going to be able to use this if you're already an R user. Getting an R environment set up is complexity that's far outside the scope of this project. If you can't use R, just go to https://aaboyles.shinyapps.io/shinyganttcharts/ If you CAN use R, please do, as I'm not paying for shinyapps.io hosting and the free tier runs out really, really quickly.
 
 You're going to need an R environment with Shiny, tidyverse, lubridate, and scales installed. If you don't have these, run this:
 
 ```r
-install.packages(c('shiny', 'tidyverse', 'lubridate', 'scales'))
+install.packages(c('shiny', 'tidyverse', 'lubridate', 'scales', 'readxl', 'rhandsontable'))
 ```
 
 In R, run the following:
@@ -39,9 +41,21 @@ Some things to note:
 * There are four headers, which are: `Start`, `End`, `Project`, and `Task`. They are all mandatory and case sensitive. Additional columns will be ignored.
 * `Start` and `End` are dates. Furthermore, they're [ISO-8601 compliant dates](https://en.wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD). This app **might** work with your date formats, but I don't guarantee it. If you're getting errors using other date formats, use your spreadsheet program to "Format Data" (or whatever) as `YYYY-MM-DD` date format.
 
-If you just want to try one, [download this one](https://github.com/aaboyles/ShinyGanttCharts/blob/master/demo.csv).
+If you just want to try it, **[Download a Demo File](https://github.com/aaboyles/ShinyGanttCharts/blob/master/demo.csv)**.
 
-# Here's a bunch of lawyer stuff CDC makes us put it our repos!
+## What if I don't want to do that?
+
+The App launches with a blank dataset by default. You can right-click on the table and click "Add Row Below" for each task that you want to plot on your chart. Each new row can be edited in-place on that table. It's a bit laborious, but fool-proof (inasmuch as it forces you to create well-formatted data).
+
+## OK, so where's the chart?
+
+Click on the "Gantt" Tab, next to "Table". There you go.
+
+## Hey, could you...
+
+Let me stop you right there. Please [file an issue](https://github.com/AABoyles/ShinyGanttCharts/issues/new) to request your fancy new feature or report that terrible bug.
+
+# Here's a bunch of lawyer stuff CDC makes us put in our repos!
 
 This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy.  Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
 
