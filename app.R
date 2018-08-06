@@ -74,7 +74,7 @@ server <- function(input, output, session){
   output$hot <- renderRHandsontable({
     if(is.null(input$file1)){
       tasks <- tibble(Start = today(), End = today() + 30, Project = "Management", Task = "Gantt Charting")
-    } else if(input$file1$type %in% c("text/csv","text/comma-separated-values,text/plain",".csv")){
+    } else if(input$file1$type %in% c("text/csv","text/comma-separated-values","text/plain",".csv")){
       tasks <- read_csv(input$file1$datapath)
     } else {
       tasks <- read_excel(input$file1$datapath)

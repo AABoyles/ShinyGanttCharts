@@ -6,7 +6,7 @@ A Shiny App to create Gantt Charts by [Anthony A. Boyles](http://anthony.boyles.
 
 Gantt Chart code adapted from [this post](https://stats.andrewheiss.com/misc/gantt.html) by Andrew Heiss
 
-**[Click Here to Download a Demo File](https://github.com/aaboyles/ShinyGanttCharts/blob/master/demo.csv)**
+**[Click Here to Download a Demo File](https://raw.githubusercontent.com/AABoyles/ShinyGanttCharts/master/demo.xlsx)**
 
 ## How do I get this thing running?
 
@@ -41,7 +41,7 @@ Some things to note:
 * There are four headers, which are: `Start`, `End`, `Project`, and `Task`. They are all mandatory and case sensitive. Additional columns will be ignored.
 * `Start` and `End` are dates. Furthermore, they're [ISO-8601 compliant dates](https://en.wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD). This app **might** work with your date formats, but I don't guarantee it. If you're getting errors using other date formats, use your spreadsheet program to "Format Data" (or whatever) as `YYYY-MM-DD` date format.
 
-If you just want to try it, **[Download a Demo File](https://github.com/aaboyles/ShinyGanttCharts/blob/master/demo.csv)**.
+If you just want to try it, **[Download a Demo File](https://raw.githubusercontent.com/AABoyles/ShinyGanttCharts/master/demo.xlsx)**.
 
 ## What if I don't want to do that?
 
