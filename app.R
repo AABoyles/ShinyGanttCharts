@@ -45,7 +45,8 @@ ui <- navbarPage("Shiny Gantt Chart",
       tabsetPanel(
         tabPanel("Table",
           downloadButton('downloadData', 'Download'),
-          rHandsontableOutput("hot")
+          rHandsontableOutput("hot"),
+          actionButton('addRow', 'Add a Row')
         ),
         tabPanel("Gantt",
           downloadButton('downloadPlot', 'Download'),
@@ -62,6 +63,14 @@ ui <- navbarPage("Shiny Gantt Chart",
 )
 
 server <- function(input, output, session){
+  td <- today()
+  tasks <- tibble(
+    Start = c(td, td + 14, td),
+    End = c(td + 1, td + 28, td + 90),
+    Project = c("Management", "Management", "Operations"),
+    Task = c("Planning", "Gantt Charting", "Make Coffee")
+  )
+    
   output$downloadData <- downloadHandler(
     filename = 'ShinyGanttExport.csv',
     content = function(file){
@@ -72,17 +81,27 @@ server <- function(input, output, session){
   )
   
   output$hot <- renderRHandsontable({
-    if(is.null(input$file1)){
-      tasks <- tibble(Start = today(), End = today() + 30, Project = "Management", Task = "Gantt Charting")
-    } else if(input$file1$type %in% c("text/csv","text/comma-separated-values","text/plain",".csv")){
-      tasks <- read_csv(input$file1$datapath)
-    } else {
-      tasks <- read_excel(input$file1$datapath)
+    if(!is.null(input$file)){
+      if(input$file1$type %in% c("text/csv","text/comma-separated-values","text/plain",".csv")){
+        tasks <- read_csv(input$file1$datapath)
+      } else {
+        tasks <- read_excel(input$file1$datapath)
+      }
     }
     
     tasks %>%
       rhandsontable() %>%
       hot_table(highlightCol = TRUE, highlightRow = TRUE)
+  })
+  
+  observeEvent(input$addRow, {
+    tasks <- hot_to_r(input$hot)
+    tasks[nrow(tasks)+1,] <- NA
+    output$hot <- renderRHandsontable({
+      tasks %>%
+        rhandsontable() %>%
+        hot_table(highlightCol = TRUE, highlightRow = TRUE)
+    })
   })
   
   output$gantt <- renderPlot({
