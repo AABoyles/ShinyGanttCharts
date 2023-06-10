@@ -81,7 +81,7 @@ server <- function(input, output, session){
   )
   
   output$hot <- renderRHandsontable({
-    if(!is.null(input$file)){
+    if(!is.null(input$file1)){
       if(input$file1$type %in% c("text/csv","text/comma-separated-values","text/plain",".csv")){
         tasks <- read_csv(input$file1$datapath)
       } else {
